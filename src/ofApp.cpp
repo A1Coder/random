@@ -1,10 +1,10 @@
 #include "ofApp.h"
-
+#include <random>
 using namespace std;
 //--------------------------------------------------------------
 void ofApp::setup(){
 jewel.load("diamond.png");// image to use (must be stored in "random/bin/data" folder)
-
+/*
 //UNIFORM RANDOM COORDINATES
 
 //x-coordinates
@@ -27,16 +27,36 @@ uniform_int_distribution < > my_listy(y_min,y_max);
 
 for(int i=0; i<20; i++)
 Y.push_back(my_listy(en));
-
-
-/*int x_mean=1000;
-int x_sd=15;
-
-int y_mean=800;
-int y_sd=15;
 */
-//X = {500, 1000, 30, 100, 300, 200, 750, 380 };// set of x-coordinates for jewel
-Y = {630, 400, 900,40, 200, 0, 90, 30}; //set of y-coordinates for jewel
+
+
+
+//NORMAL DISTRIBUTION 
+random_device rd;
+mt19937 en(rd());
+
+//x-coordinates
+float x_mean=1000.0f;
+float x_sd=15.0f;
+
+
+
+normal_distribution < > my_listx(x_mean,x_sd);
+
+for(int i=0; i<20; i++)
+X.push_back(my_listx(en));
+
+
+
+//y-coordinates
+float y_mean=800.0f;
+float y_sd=15.0f;
+normal_distribution < > my_listy(y_mean,y_sd);
+
+for(int i=0; i<20; i++)
+Y.push_back(my_listy(en));
+
+
 }
 
 //--------------------------------------------------------------
